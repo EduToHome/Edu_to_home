@@ -1,9 +1,9 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/miamisys?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/edu_to_home?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: 654321
+    password: root
   cloud:
     config:
       discovery:

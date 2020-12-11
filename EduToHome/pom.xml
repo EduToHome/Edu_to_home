@@ -16,6 +16,8 @@
         <module>Entity</module>
         <module>CeShiConsumer</module>
         <module>Util</module>
+        <module>TeacherModule</module>
+        <module>TeacherConsumer</module>
     </modules>
 
     <parent>

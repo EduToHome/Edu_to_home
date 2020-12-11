@@ -1,5 +1,6 @@
 package com.edh.entity;
 
+import javax.security.auth.Subject;
 import java.io.Serializable;
 
 /**
@@ -18,10 +19,15 @@ public class Teacher implements Serializable {
      * 科目编号
      */
     private Integer suid;
+
+    private Subject subject;
     /**
      * 用户编号
      */
     private Integer uid;
+
+
+    private Users users;
     /**
      * 学历
      */
@@ -31,6 +37,21 @@ public class Teacher implements Serializable {
      */
     private String tdesc;
 
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
 
     public Integer getTid() {
         return tid;
