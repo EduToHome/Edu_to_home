@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.AwardDao">
+
+    <resultMap type="com.edh.entity.Award" id="AwardMap">
+        <result property="aid" column="aid" jdbcType="INTEGER"/>
+        <result property="adate" column="adate" jdbcType="VARCHAR"/>
+        <result property="adesc" column="adesc" jdbcType="VARCHAR"/>
+        <result property="apoint" column="apoint" jdbcType="INTEGER"/>
+<!--        <association property="employees" column="eid" select="com.mmy.dao.EmployeesDao.queryById"/>-->
+    </resultMap>
+
+    <!--查询所有奖惩表信息-->
+    <select id="queryGetAll" resultMap="AwardMap">
+        select
+          aid, adate, adesc, apoint, eid
+        from miamisys.award
+    </select>
+    <!--根据员工编号查询本员工奖惩表信息-->
+    <select id="queryByEId" resultMap="AwardMap">
+        select
+          aid, adate, adesc, apoint, eid
+        from miamisys.award
+        where eid = #{eid}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AwardMap">
+        select
+          aid, adate, adesc, apoint, eid
+        from miamisys.award
+        where aid = #{aid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AwardMap">
+        select
+          aid, adate, adesc, apoint, eid
+        from miamisys.award
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AwardMap">
+        select
+        aid, adate, adesc, apoint, eid
+        from miamisys.award
+        <where>
+            <if test="aid != null">
+                and aid = #{aid}
+            </if>
+            <if test="adate != null and adate != ''">
+                and adate = #{adate}
+            </if>
+            <if test="adesc != null and adesc != ''">
+                and adesc = #{adesc}
+            </if>
+            <if test="apoint != null">
+                and apoint = #{apoint}
+            </if>
+            <if test="eid != null">
+                and eid = #{eid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" >
+        insert into miamisys.award(adate, adesc, apoint, eid)
+        values (#{adate}, #{adesc}, #{apoint}, #{eid})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="aid" useGeneratedKeys="true">
+        insert into miamisys.award(adate, adesc, apoint, eid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.adate}, #{entity.adesc}, #{entity.apoint}, #{entity.eid})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="aid" useGeneratedKeys="true">
+        insert into miamisys.award(adate, adesc, apoint, eid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.adate}, #{entity.adesc}, #{entity.apoint}, #{entity.eid})
+        </foreach>
+        on duplicate key update
+        adate = values(adate) , adesc = values(adesc) , apoint = values(apoint) , eid = values(eid)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update miamisys.award
+        <set>
+            <if test="adate != null and adate != ''">
+                adate = #{adate},
+            </if>
+            <if test="adesc != null and adesc != ''">
+                adesc = #{adesc},
+            </if>
+            <if test="apoint != null">
+                apoint = #{apoint},
+            </if>
+            <if test="eid != null">
+                eid = #{eid},
+            </if>
+        </set>
+        where aid = #{aid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from miamisys.award where aid = #{aid}
+    </delete>
+
+</mapper>

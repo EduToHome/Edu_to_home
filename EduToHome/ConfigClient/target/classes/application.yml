@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: config-client
+  profiles:
+    active: native  # 配置使用本地储存
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:yml/ # 搜索src/main/resource 下的propertie
+#        git:
+#          uri: https://gitee.com/next-1/miamisys.git #配置文件所在仓库
+#          default-label: master #配置文件分支
+#          search-paths: config-repo  #配置文件所在根目录
+server:
+  port: 8600
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8900/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: ${spring.cloud.client.ip-address}
+    instance-id: http://${spring.cloud.client.ip-address}:${server.port}

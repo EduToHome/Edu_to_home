@@ -1,0 +1,15 @@
+swagger:
+  basepackage: com.edh.controller
+  title: miamisys
+  descri: 家校通
+  version: 1.0
+  contact: 白大闲人
+  url: http://localhost:8701/value
+spring:
+  redis:
+    host: localhost
+    port: 6379
+    max-wait: 30000
+    max-active: 100
+    max-idle: 100
+    timeout: 3000
