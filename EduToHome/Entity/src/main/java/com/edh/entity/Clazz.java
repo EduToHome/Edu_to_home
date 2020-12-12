@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-11 22:25:32
  */
-public class Class implements Serializable {
+public class Clazz implements Serializable {
     private static final long serialVersionUID = 154133800955912509L;
     /**
      * 班级编号
