@@ -18,6 +18,8 @@
         <module>Util</module>
         <module>TeacherModule</module>
         <module>TeacherConsumer</module>
+        <module>TeacherProvider</module>
+        <module>TeacherConsumer</module>
     </modules>
 
     <parent>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.TeacherDao">
+
+    <resultMap type="com.edh.entity.Teacher" id="TeacherMap">
+        <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <result property="suid" column="suid" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="tedu" column="tedu" jdbcType="VARCHAR"/>
+        <result property="tdesc" column="tdesc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TeacherMap">
+        select
+          tid, suid, uid, tedu, tdesc
+        from edu_to_home.teacher
+        where tid = #{tid}
+    </select>
+
+
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TeacherMap">
+        select
+        tid, suid, uid, tedu, tdesc
+        from edu_to_home.teacher
+        <where>
+            <if test="tid != null">
+                and tid = #{tid}
+            </if>
+            <if test="suid != null">
+                and suid = #{suid}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="tedu != null and tedu != ''">
+                and tedu = #{tedu}
+            </if>
+            <if test="tdesc != null and tdesc != ''">
+                and tdesc = #{tdesc}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="tid" useGeneratedKeys="true">
+        insert into edu_to_home.teacher(suid, uid, tedu, tdesc)
+        values (#{suid}, #{uid}, #{tedu}, #{tdesc})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="tid" useGeneratedKeys="true">
+        insert into edu_to_home.teacher(suid, uid, tedu, tdesc)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.suid}, #{entity.uid}, #{entity.tedu}, #{entity.tdesc})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="tid" useGeneratedKeys="true">
+        insert into edu_to_home.teacher(suid, uid, tedu, tdesc)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.suid}, #{entity.uid}, #{entity.tedu}, #{entity.tdesc})
+        </foreach>
+        on duplicate key update
+        suid = values(suid) , uid = values(uid) , tedu = values(tedu) , tdesc = values(tdesc)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update edu_to_home.teacher
+        <set>
+            <if test="suid != null">
+                suid = #{suid},
+            </if>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="tedu != null and tedu != ''">
+                tedu = #{tedu},
+            </if>
+            <if test="tdesc != null and tdesc != ''">
+                tdesc = #{tdesc},
+            </if>
+        </set>
+        where tid = #{tid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from edu_to_home.teacher where tid = #{tid}
+    </delete>
+
+    <!--通过主键删除-->
+    <delete id="deleteByUid">
+        delete from edu_to_home.teacher where uid = #{uid}
+    </delete>
+
+</mapper>
