@@ -46,12 +46,12 @@ public class StudentController {
     @GetMapping("/selectOneStudent")
     @ApiOperation(value = "根据主键查单个学生")
     public Object selectOneStudent(Integer sid,@RequestParam(value = "key", defaultValue = "student") String key) {
-        List<Object> list = redisUtil.lGet(key, 0, -1);
+        List<Object> list = redisUtil.lGet(key+sid, 0, -1);
         if (list != null && list.size() != 0){
             return list;
         }else{
             Student student = feign.selectOne(sid);
-            redisUtil.lSet(key,student,60);
+            redisUtil.lSet(key+sid,student,60);
             return student;
         }
     }

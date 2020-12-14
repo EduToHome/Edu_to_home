@@ -1,5 +1,7 @@
 package com.edh.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-11 22:25:32
  */
+@Data
 public class Subject implements Serializable {
     private static final long serialVersionUID = -72449811437677796L;
 

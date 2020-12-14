@@ -1,5 +1,7 @@
 package com.edh.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-11 22:25:32
  */
+@Data
 public class Clazz implements Serializable {
     private static final long serialVersionUID = 154133800955912509L;
     /**
@@ -27,6 +30,19 @@ public class Clazz implements Serializable {
      */
     private Integer tid;
 
+    private Teacher teacher;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public Integer getCid() {
         return cid;
