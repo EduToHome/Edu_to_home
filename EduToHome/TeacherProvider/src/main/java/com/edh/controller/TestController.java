@@ -2,10 +2,7 @@ package com.edh.controller;
 
 import com.edh.entity.Test;
 import com.edh.service.TestService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -32,7 +29,7 @@ public class TestController {
      * @return 单条数据
      */
     @GetMapping("selectOneTest")
-    public Test selectOne(Integer teid) {
+    public Test selectOne( @RequestParam("teid")Integer teid) {
         return this.testService.queryById(teid);
     }
 
@@ -42,7 +39,7 @@ public class TestController {
      * @return 试卷实例
      */
     @PostMapping("insertTest")
-    public Test insertTest(Test test){
+    public Test insertTest(@RequestBody Test test){
         return testService.insert(test);
     }
 
@@ -52,7 +49,7 @@ public class TestController {
      * @return  试卷实例
      */
     @PostMapping("updateTest")
-    public Test updateTest(Test test){
+    public Test updateTest(@RequestBody Test test){
         return testService.update(test);
     }
 
@@ -62,7 +59,7 @@ public class TestController {
      * @return true成功  false 失败
      */
     @GetMapping("deleteByTeid")
-    public boolean deleteByTeid(Integer teid){
+    public boolean deleteByTeid( @RequestParam("teid")Integer teid){
         return testService.deleteById(teid);
     }
 
@@ -72,7 +69,7 @@ public class TestController {
      * @return
      */
     @PostMapping("queryAll")
-    public List<Test> getTest( Test test){
+    public List<Test> getTest(@RequestBody Test test){
         return testService.queryAll(test);
     }
 

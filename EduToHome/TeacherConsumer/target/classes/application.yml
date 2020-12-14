@@ -20,6 +20,9 @@ spring:
     max-active: 100
     max-idle: 100
     timeout: 3000
+  main:
+    allow-bean-definition-overriding: true
+
 swagger:
   basepackage: com.edh.controller
   title: miamisys

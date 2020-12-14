@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.ContentDao">
+
+    <resultMap type="com.edh.entity.Content" id="ContentMap">
+        <result property="coid" column="coid" jdbcType="INTEGER"/>
+        <result property="teid" column="teid" jdbcType="INTEGER"/>
+        <result property="topic" column="topic" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ContentMap">
+        select
+          coid, teid, topic
+        from edu_to_home.content
+        where coid = #{coid}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ContentMap">
+        select
+        coid, teid, topic
+        from edu_to_home.content
+        <where>
+            <if test="coid != null">
+                and coid = #{coid}
+            </if>
+            <if test="teid != null">
+                and teid = #{teid}
+            </if>
+            <if test="topic != null and topic != ''">
+                and topic = #{topic}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="coid" useGeneratedKeys="true">
+        insert into edu_to_home.content(teid, topic)
+        values (#{teid}, #{topic})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update edu_to_home.content
+        <set>
+            <if test="teid != null">
+                teid = #{teid},
+            </if>
+            <if test="topic != null and topic != ''">
+                topic = #{topic},
+            </if>
+        </set>
+        where coid = #{coid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from edu_to_home.content where coid = #{coid}
+    </delete>
+
+</mapper>

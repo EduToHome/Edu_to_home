@@ -18,6 +18,7 @@ public class TeacherFeignController {
 
     @Autowired
     private ITeacherFeign teacherFeign;
+
     @ApiOperation(value = "根据tid查询单个教师信息")
     @GetMapping("selectOneTeacher")
     public Teacher selectOneTeacher(Integer tid){

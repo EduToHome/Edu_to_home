@@ -41,7 +41,37 @@ public class Test implements Serializable {
     private List<Content> contents;
 
 
+    public TestType getTestType() {
+        return testType;
+    }
 
+    public void setTestType(TestType testType) {
+        this.testType = testType;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    public List<Content> getContents() {
+        return contents;
+    }
+
+    public void setContents(List<Content> contents) {
+        this.contents = contents;
+    }
 
     public Integer getTeid() {
         return teid;
