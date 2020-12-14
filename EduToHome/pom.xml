@@ -16,10 +16,10 @@
         <module>Entity</module>
         <module>CeShiConsumer</module>
         <module>Util</module>
-        <module>TeacherModule</module>
-        <module>TeacherConsumer</module>
         <module>TeacherProvider</module>
         <module>TeacherConsumer</module>
+        <module>StudentProvider</module>
+        <module>StudentConsumer</module>
     </modules>
 
     <parent>
