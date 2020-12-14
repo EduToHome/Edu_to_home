@@ -1,6 +1,9 @@
 package com.edh.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (StudentTest)实体类
@@ -8,6 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-11 22:25:35
  */
+@Data
 public class StudentTest implements Serializable {
     private static final long serialVersionUID = -45309553929086716L;
     /**
@@ -18,14 +22,20 @@ public class StudentTest implements Serializable {
      * 学生编号
      */
     private Integer sid;
+
+    private Student student;
     /**
      * 试卷编号
      */
     private Integer teid;
+
+    private Test test;
     /**
      * 班级编号
      */
     private Integer cid;
+
+    private Clazz clazz;
     /**
      * 答题状态
      */
@@ -42,6 +52,41 @@ public class StudentTest implements Serializable {
      * 批阅状态
      */
     private Integer sover;
+
+    private List<StudentContent> studentContents;
+
+
+    public List<StudentContent> getStudentContents() {
+        return studentContents;
+    }
+
+    public void setStudentContents(List<StudentContent> studentContents) {
+        this.studentContents = studentContents;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
+
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
+    }
 
 
     public Integer getStid() {

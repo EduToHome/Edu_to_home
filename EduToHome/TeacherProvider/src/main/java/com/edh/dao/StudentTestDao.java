@@ -1,58 +1,58 @@
 package com.edh.dao;
 
-import com.edh.entity.Content;
+import com.edh.entity.StudentTest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
- * (Content)表数据库访问层
+ * (StudentTest)表数据库访问层
  *
  * @author makejava
- * @since 2020-12-12 14:26:06
+ * @since 2020-12-14 15:16:04
  */
 @Mapper
-public interface ContentDao {
+public interface StudentTestDao {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param coid 主键
+     * @param stid 主键
      * @return 实例对象
      */
-    Content queryById(Integer coid);
+    StudentTest queryById(Integer stid);
 
-    Content queryByTeid(Integer teid);
+
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param content 实例对象
+     * @param studentTest 实例对象
      * @return 对象列表
      */
-    List<Content> queryAll(Content content);
+    List<StudentTest> queryAll(StudentTest studentTest);
 
     /**
      * 新增数据
      *
-     * @param content 实例对象
+     * @param studentTest 实例对象
      * @return 影响行数
      */
-    int insert(Content content);
+    int insert(StudentTest studentTest);
 
     /**
      * 修改数据
      *
-     * @param content 实例对象
+     * @param studentTest 实例对象
      * @return 影响行数
      */
-    int update(Content content);
+    int update(StudentTest studentTest);
 
     /**
      * 通过主键删除数据
      *
-     * @param coid 主键
+     * @param stid 主键
      * @return 影响行数
      */
-    int deleteById(Integer coid);
+    int deleteById(Integer stid);
 
 }

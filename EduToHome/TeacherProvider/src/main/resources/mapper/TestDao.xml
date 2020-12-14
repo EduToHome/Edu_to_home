@@ -7,6 +7,10 @@
         <result property="ttid" column="ttid" jdbcType="INTEGER"/>
         <result property="suid" column="suid" jdbcType="INTEGER"/>
         <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <association property="teacher" column="tid" select="com.edh.dao.TeacherDao.queryById"/>
+<!--        <association property="testType"/>-->
+<!--        <association property="subject"   />      -->
+        <collection property="contents" column="teid" select="com.edh.dao.ContentDao.queryByTeid"/>
     </resultMap>
 
     <!--查询单个-->

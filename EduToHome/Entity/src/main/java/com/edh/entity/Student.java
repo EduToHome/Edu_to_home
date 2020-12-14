@@ -1,5 +1,7 @@
 package com.edh.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-11 22:25:33
  */
+@Data
 public class Student implements Serializable {
     private static final long serialVersionUID = 627947160754042425L;
     /**
@@ -26,6 +29,7 @@ public class Student implements Serializable {
      * 班级编号
      */
     private Integer cid;
+
 
     private Clazz clazz;
     /**
