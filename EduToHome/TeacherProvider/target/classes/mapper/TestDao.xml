@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.TestDao">
+
+    <resultMap type="com.edh.entity.Test" id="TestMap">
+        <result property="teid" column="teid" jdbcType="INTEGER"/>
+        <result property="ttid" column="ttid" jdbcType="INTEGER"/>
+        <result property="suid" column="suid" jdbcType="INTEGER"/>
+        <result property="tid" column="tid" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TestMap">
+        select
+          teid, ttid, suid, tid
+        from edu_to_home.test
+        where teid = #{teid}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TestMap">
+        select
+        teid, ttid, suid, tid
+        from edu_to_home.test
+        <where>
+            <if test="teid != null">
+                and teid = #{teid}
+            </if>
+            <if test="ttid != null">
+                and ttid = #{ttid}
+            </if>
+            <if test="suid != null">
+                and suid = #{suid}
+            </if>
+            <if test="tid != null">
+                and tid = #{tid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="teid" useGeneratedKeys="true">
+        insert into edu_to_home.test(ttid, suid, tid)
+        values (#{ttid}, #{suid}, #{tid})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update edu_to_home.test
+        <set>
+            <if test="ttid != null">
+                ttid = #{ttid},
+            </if>
+            <if test="suid != null">
+                suid = #{suid},
+            </if>
+            <if test="tid != null">
+                tid = #{tid},
+            </if>
+        </set>
+        where teid = #{teid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from edu_to_home.test where teid = #{teid}
+    </delete>
+
+</mapper>

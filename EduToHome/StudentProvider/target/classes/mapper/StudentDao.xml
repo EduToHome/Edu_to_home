@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.StudentDao">
+
+    <resultMap type="com.edh.entity.Student" id="StudentMap">
+        <result property="sid" column="sid" jdbcType="INTEGER"/>
+        <result property="sname" column="sname" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="cid" column="cid" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="pid" column="pid" jdbcType="INTEGER"/>
+<!--        <association property="clazz" column="cid" select="com.edh.dao.ClazzDao.queryById" />-->
+    </resultMap>
+
+    <!--根据班级ID查学生集合-->
+    <select id="getByCid" resultMap="StudentMap">
+        select
+          sid, sname, sex, cid, uid, pid
+        from edu_to_home.student
+        where cid = #{cid}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="StudentMap">
+        select
+          sid, sname, sex, cid, uid, pid
+        from edu_to_home.student
+        where sid = #{sid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="StudentMap">
+        select
+          sid, sname, sex, cid, uid, pid
+        from edu_to_home.student
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="StudentMap">
+        select
+        sid, sname, sex, cid, uid, pid
+        from edu_to_home.student
+        <where>
+            <if test="sid != null">
+                and sid = #{sid}
+            </if>
+            <if test="sname != null and sname != ''">
+                and sname = #{sname}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="cid != null">
+                and cid = #{cid}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="pid != null">
+                and pid = #{pid}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="sid" useGeneratedKeys="true">
+        insert into edu_to_home.student(sname, sex, cid, uid, pid)
+        values (#{sname}, #{sex}, #{cid}, #{uid}, #{pid})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="sid" useGeneratedKeys="true">
+        insert into edu_to_home.student(sname, sex, cid, uid, pid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.sname}, #{entity.sex}, #{entity.cid}, #{entity.uid}, #{entity.pid})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="sid" useGeneratedKeys="true">
+        insert into edu_to_home.student(sname, sex, cid, uid, pid)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.sname}, #{entity.sex}, #{entity.cid}, #{entity.uid}, #{entity.pid})
+        </foreach>
+        on duplicate key update
+        sname = values(sname) , sex = values(sex) , cid = values(cid) , uid = values(uid) , pid = values(pid)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update edu_to_home.student
+        <set>
+            <if test="sname != null and sname != ''">
+                sname = #{sname},
+            </if>
+            <if test="sex != null and sex != ''">
+                sex = #{sex},
+            </if>
+            <if test="cid != null">
+                cid = #{cid},
+            </if>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+            <if test="pid != null">
+                pid = #{pid},
+            </if>
+        </set>
+        where sid = #{sid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from edu_to_home.student where sid = #{sid}
+    </delete>
+
+</mapper>
