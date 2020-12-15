@@ -16,6 +16,14 @@
         where coid = #{coid}
     </select>
 
+    <!--根据teid查询单个-->
+    <select id="queryByTeid" resultMap="ContentMap">
+        select
+          coid, teid, topic
+        from edu_to_home.content
+        where teid = #{teid}
+    </select>
+
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="ContentMap">
         select

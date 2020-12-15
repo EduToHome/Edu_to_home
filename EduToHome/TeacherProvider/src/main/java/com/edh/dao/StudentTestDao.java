@@ -2,6 +2,7 @@ package com.edh.dao;
 
 import com.edh.entity.StudentTest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public interface StudentTestDao {
     StudentTest queryById(Integer stid);
 
 
+    List<StudentTest> queryBySid(Integer sid);
     /**
      * 通过实体作为筛选条件查询
      *
@@ -31,6 +33,8 @@ public interface StudentTestDao {
      */
     List<StudentTest> queryAll(StudentTest studentTest);
 
+
+    StudentTest queryBySidAndTeid(@Param("sid") Integer sid,@Param("teid") Integer teid);
     /**
      * 新增数据
      *

@@ -1,58 +1,58 @@
 package com.edh.dao;
 
-import com.edh.entity.Content;
+import com.edh.entity.TestType;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * (Content)表数据库访问层
+ * (TestType)表数据库访问层
  *
  * @author makejava
- * @since 2020-12-12 14:26:06
+ * @since 2020-12-15 11:29:40
  */
 @Mapper
-public interface ContentDao{
+public interface TestTypeDao {
 
     /**
      * 通过ID查询单条数据
      *
-     * @param coid 主键
+     * @param ttid 主键
      * @return 实例对象
      */
-    Content queryById(Integer coid);
+    TestType queryById(Integer ttid);
 
-    Content queryByTeid(Integer teid);
     /**
      * 通过实体作为筛选条件查询
      *
-     * @param content 实例对象
+     * @param testType 实例对象
      * @return 对象列表
      */
-    List<Content> queryAll(Content content);
+    List<TestType> queryAll(TestType testType);
 
     /**
      * 新增数据
      *
-     * @param content 实例对象
+     * @param testType 实例对象
      * @return 影响行数
      */
-    int insert(Content content);
+    int insert(TestType testType);
 
     /**
      * 修改数据
      *
-     * @param content 实例对象
+     * @param testType 实例对象
      * @return 影响行数
      */
-    int update(Content content);
+    int update(TestType testType);
 
     /**
      * 通过主键删除数据
      *
-     * @param coid 主键
+     * @param ttid 主键
      * @return 影响行数
      */
-    int deleteById(Integer coid);
+    int deleteById(Integer ttid);
 
 }

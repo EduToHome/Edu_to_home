@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.SumScoreDao">
+
+    <resultMap type="com.edh.entity.SumScore" id="SumScoreMap">
+        <result property="sumsid" column="sumsid" jdbcType="INTEGER"/>
+        <result property="sid" column="sid" jdbcType="INTEGER"/>
+        <result property="cid" column="cid" jdbcType="INTEGER"/>
+        <result property="ttid" column="ttid" jdbcType="INTEGER"/>
+        <result property="sumScore" column="sum_score" jdbcType="INTEGER"/>
+        <association property="student" column="sid" select="com.edh.dao.StudentDao.queryById"/>
+<!--        <association property="clazz" />-->
+        <collection property="studentTests" column="sid" select="com.edh.dao.StudentTestDao.queryBySid"/>
+
+    </resultMap>
+
+
+
+    <!--查询单个-->
+    <select id="getSumScoreByTtid" resultMap="SumScoreMap">
+        select
+          sumsid, sid, cid, ttid, sum_score
+        from edu_to_home.sum_score
+        where ttid=#{ttid}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SumScoreMap">
+        select
+          sumsid, sid, cid, ttid, sum_score
+        from edu_to_home.sum_score
+        where sumsid = #{sumsid}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SumScoreMap">
+        select
+        sumsid, sid, cid, ttid, sum_score
+        from edu_to_home.sum_score
+        <where>
+            <if test="sumsid != null">
+                and sumsid = #{sumsid}
+            </if>
+            <if test="sid != null">
+                and sid = #{sid}
+            </if>
+            <if test="cid != null">
+                and cid = #{cid}
+            </if>
+            <if test="ttid != null">
+                and ttid = #{ttid}
+            </if>
+            <if test="sumScore != null">
+                and sum_score = #{sumScore}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="sumsid" useGeneratedKeys="true">
+        insert into edu_to_home.sum_score(sid, cid, ttid, sum_score)
+        values (#{sid}, #{cid}, #{ttid}, #{sumScore})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update edu_to_home.sum_score
+        <set>
+            <if test="sid != null">
+                sid = #{sid},
+            </if>
+            <if test="cid != null">
+                cid = #{cid},
+            </if>
+            <if test="ttid != null">
+                ttid = #{ttid},
+            </if>
+            <if test="sumScore != null">
+                sum_score = #{sumScore},
+            </if>
+        </set>
+        where sumsid = #{sumsid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from edu_to_home.sum_score where sumsid = #{sumsid}
+    </delete>
+
+</mapper>

@@ -1,6 +1,9 @@
 package com.edh.entity;
 
+import lombok.Data;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (SumScore)实体类
@@ -8,6 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-11 22:25:33
  */
+@Data
 public class SumScore implements Serializable {
     private static final long serialVersionUID = -59823346401892812L;
     /**
@@ -18,10 +22,14 @@ public class SumScore implements Serializable {
      * 学生编号
      */
     private Integer sid;
+
+    private Student student;
     /**
      * 班级编号
      */
     private Integer cid;
+
+    private Clazz clazz;
     /**
      * 考试类型编号
      */
@@ -31,6 +39,32 @@ public class SumScore implements Serializable {
      */
     private Integer sumScore;
 
+    private List<StudentTest> studentTests;
+
+
+    public List<StudentTest> getStudentTests() {
+        return studentTests;
+    }
+
+    public void setStudentTests(List<StudentTest> studentTests) {
+        this.studentTests = studentTests;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Clazz getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(Clazz clazz) {
+        this.clazz = clazz;
+    }
 
     public Integer getSumsid() {
         return sumsid;
