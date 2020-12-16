@@ -1,6 +1,7 @@
 package com.edh.entity;
 
-import javax.security.auth.Subject;
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -9,6 +10,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-12-10 19:58:03
  */
+@Data
 public class Teacher implements Serializable {
     private static final long serialVersionUID = 140478634158380166L;
     /**
@@ -20,7 +22,9 @@ public class Teacher implements Serializable {
      */
     private Integer suid;
 
-    private Subject subject;
+
+   private Subject subject;
+
     /**
      * 用户编号
      */
@@ -37,20 +41,8 @@ public class Teacher implements Serializable {
      */
     private String tdesc;
 
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public Users getUsers() {
-        return users;
-    }
-
-    public void setUsers(Users users) {
-        this.users = users;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getTid() {
@@ -69,12 +61,28 @@ public class Teacher implements Serializable {
         this.suid = suid;
     }
 
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
     public Integer getUid() {
         return uid;
     }
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public String getTedu() {
@@ -92,5 +100,4 @@ public class Teacher implements Serializable {
     public void setTdesc(String tdesc) {
         this.tdesc = tdesc;
     }
-
 }

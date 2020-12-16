@@ -9,7 +9,7 @@
         <result property="tid" column="tid" jdbcType="INTEGER"/>
         <association property="teacher" column="tid" select="com.edh.dao.TeacherDao.queryById"/>
         <association property="testType" column="ttid" select="com.edh.dao.TestTypeDao.queryById"/>
-<!--        <association property="subject"   />      -->
+        <association property="subject" column="suid" select="com.edh.dao.SubjectDao.queryById"   />
         <collection property="contents" column="teid" select="com.edh.dao.ContentDao.queryByTeid"/>
     </resultMap>
 

@@ -55,12 +55,12 @@
             <scope>compile</scope>
         </dependency>
 
-        <dependency>
-            <groupId>com.eth</groupId>
-            <artifactId>TeacherProvider</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.eth</groupId>-->
+<!--            <artifactId>TeacherProvider</artifactId>-->
+<!--            <version>1.0-SNAPSHOT</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
 
 <!--        <dependency>-->
 <!--            <groupId>com.eth</groupId>-->

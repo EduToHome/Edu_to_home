@@ -4,10 +4,11 @@
 
     <resultMap type="com.edh.entity.Teacher" id="TeacherMap">
         <result property="tid" column="tid" jdbcType="INTEGER"/>
-        <result property="suid" column="suid" jdbcType="INTEGER"/>
         <result property="uid" column="uid" jdbcType="INTEGER"/>
         <result property="tedu" column="tedu" jdbcType="VARCHAR"/>
         <result property="tdesc" column="tdesc" jdbcType="VARCHAR"/>
+        <association property="subject" column="suid" select="com.edh.dao.SubjectDao.queryById"/>
+<!--        <association property="users" column="uid" select=""/>-->
     </resultMap>
 
     <!--查询单个-->

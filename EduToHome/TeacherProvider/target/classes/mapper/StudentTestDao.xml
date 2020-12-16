@@ -13,8 +13,9 @@
         <result property="sover" column="sover" jdbcType="INTEGER"/>
         <association property="student"  column="sid" select="com.edh.dao.StudentDao.getByCid"/>
         <association property="test" column="teid" select="com.edh.dao.TestDao.queryById"/>
-<!--        <association property="clazz" column="cid" select=""/>-->
+        <association property="clazz" column="cid" select="com.edh.dao.ClazzDao.queryById"/>
         <collection property="studentContents" column="stid" select="com.edh.dao.StudentContentDao.queryByStid"/>
+
     </resultMap>
 
     <!--根据sid查询-->

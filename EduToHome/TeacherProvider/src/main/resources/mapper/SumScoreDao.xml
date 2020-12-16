@@ -9,7 +9,7 @@
         <result property="ttid" column="ttid" jdbcType="INTEGER"/>
         <result property="sumScore" column="sum_score" jdbcType="INTEGER"/>
         <association property="student" column="sid" select="com.edh.dao.StudentDao.queryById"/>
-<!--        <association property="clazz" />-->
+        <association property="clazz" column="cid" select="com.edh.dao.ClazzDao.queryById" />
         <collection property="studentTests" column="sid" select="com.edh.dao.StudentTestDao.queryBySid"/>
 
     </resultMap>
