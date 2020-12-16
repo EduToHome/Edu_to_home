@@ -7,6 +7,7 @@
         <result property="cname" column="cname" jdbcType="VARCHAR"/>
         <result property="cdesc" column="cdesc" jdbcType="VARCHAR"/>
         <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <association property="teacher" column="tid" select="com.edh.dao.TeacherDao.queryById"/>
     </resultMap>
 
     <!--查询单个-->

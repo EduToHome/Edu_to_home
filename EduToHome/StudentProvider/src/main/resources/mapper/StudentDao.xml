@@ -9,7 +9,9 @@
         <result property="cid" column="cid" jdbcType="INTEGER"/>
         <result property="uid" column="uid" jdbcType="INTEGER"/>
         <result property="pid" column="pid" jdbcType="INTEGER"/>
-<!--        <association property="clazz" column="cid" select="com.edh.dao.ClazzDao.queryById" />-->
+        <association property="clazz" column="cid" select="com.edh.dao.ClazzDao.queryById"/>
+        <association property="users" column="uid" select="com.edh.dao.UsersDao.queryById"/>
+        <association property="parent" column="pid" select="com.edh.dao.ParentDao.queryById"/>
     </resultMap>
 
     <!--根据班级ID查学生集合-->
