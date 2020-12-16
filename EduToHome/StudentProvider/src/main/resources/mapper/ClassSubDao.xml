@@ -7,6 +7,9 @@
         <result property="cid" column="cid" jdbcType="INTEGER"/>
         <result property="suid" column="suid" jdbcType="INTEGER"/>
         <result property="tid" column="tid" jdbcType="INTEGER"/>
+        <association property="clazz" column="cid" select="com.edh.dao.ClazzDao.queryById"/>
+        <association property="subject" column="suid" select="com.edh.dao.SubjectDao.queryById"/>
+        <association property="teacher" column="tid" select="com.edh.dao.TeacherDao.queryById"/>
     </resultMap>
 
     <select id="getClassSubByCid" resultMap="ClassSubMap">
