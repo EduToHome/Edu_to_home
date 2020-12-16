@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edh.dao.SubjectDao">
+
+    <resultMap type="com.edh.entity.Subject" id="SubjectMap">
+        <result property="suid" column="suid" jdbcType="INTEGER"/>
+        <result property="suname" column="suname" jdbcType="VARCHAR"/>
+        <result property="sudesc" column="sudesc" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SubjectMap">
+        select
+          suid, suname, sudesc
+        from edu_to_home.subject
+        where suid = #{suid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SubjectMap">
+        select
+          suid, suname, sudesc
+        from edu_to_home.subject
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="SubjectMap">
+        select
+        suid, suname, sudesc
+        from edu_to_home.subject
+        <where>
+            <if test="suid != null">
+                and suid = #{suid}
+            </if>
+            <if test="suname != null and suname != ''">
+                and suname = #{suname}
+            </if>
+            <if test="sudesc != null and sudesc != ''">
+                and sudesc = #{sudesc}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="suid" useGeneratedKeys="true">
+        insert into edu_to_home.subject(suname, sudesc)
+        values (#{suname}, #{sudesc})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="suid" useGeneratedKeys="true">
+        insert into edu_to_home.subject(suname, sudesc)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.suname}, #{entity.sudesc})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="suid" useGeneratedKeys="true">
+        insert into edu_to_home.subject(suname, sudesc)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.suname}, #{entity.sudesc})
+        </foreach>
+        on duplicate key update
+        suname = values(suname) , sudesc = values(sudesc)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update edu_to_home.subject
+        <set>
+            <if test="suname != null and suname != ''">
+                suname = #{suname},
+            </if>
+            <if test="sudesc != null and sudesc != ''">
+                sudesc = #{sudesc},
+            </if>
+        </set>
+        where suid = #{suid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from edu_to_home.subject where suid = #{suid}
+    </delete>
+
+</mapper>

@@ -30,6 +30,19 @@ public class Clazz implements Serializable {
      */
     private Integer tid;
 
+    private Teacher teacher;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public Integer getCid() {
         return cid;
